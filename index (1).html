@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Riccardo Cappella</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #f4efe6;
+      --bg2:     #ede7db;
+      --bg3:     #e6dfd2;
+      --red:     #a0272a;
+      --red-dim: rgba(160,39,42,0.08);
+      --ink:     #1c1714;
+      --muted:   #7a6f65;
+      --border:  rgba(28,23,20,0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* ── Custom cursor ── */
+    #cur {
+      position: fixed;
+      width: 8px; height: 8px;
+      background: var(--red);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%,-50%);
+      transition: transform .12s ease;
+    }
+    #cur-ring {
+      position: fixed;
+      width: 32px; height: 32px;
+      border: 1.5px solid var(--red);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%,-50%);
+      opacity: .35;
+      transition: width .2s, height .2s, opacity .2s;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.6rem 5rem;
+      background: rgba(244,239,230,.88);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid transparent;
+      transition: border-color .3s;
+    }
+    nav.scrolled { border-color: var(--border); }
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+      letter-spacing: .01em;
+      color: var(--ink);
+    }
+    .nav-logo span { color: var(--red); }
+    .nav-links { list-style: none; display: flex; gap: 2.5rem; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .7rem;
+      font-weight: 400;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--red); }
+
+    /* ── Hero ── */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 8rem 5rem 5rem;
+      gap: 4rem;
+    }
+    .hero-left { animation: slideUp .9s .1s both; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: .6rem;
+      padding: .35rem .9rem;
+      border: 1px solid var(--border);
+      background: var(--bg2);
+      font-size: .65rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      border-radius: 2px;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--red);
+      border-radius: 50%;
+    }
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(3rem, 6.5vw, 6rem);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -.02em;
+      margin-bottom: 1.5rem;
+    }
+    h1 em { font-style: italic; color: var(--red); }
+    .hero-desc {
+      color: var(--muted);
+      font-size: .82rem;
+      max-width: 400px;
+      line-height: 1.9;
+      margin-bottom: 2.5rem;
+    }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-size: .68rem;
+      font-family: 'DM Sans', sans-serif;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: .8rem 1.8rem;
+      border-radius: 2px;
+      transition: all .22s;
+      cursor: none;
+    }
+    .btn-primary { background: var(--red); color: #fff; border: 1.5px solid var(--red); }
+    .btn-primary:hover { background: transparent; color: var(--red); }
+    .btn-outline { border: 1.5px solid var(--border); color: var(--ink); }
+    .btn-outline:hover { border-color: var(--red); color: var(--red); }
+
+    .hero-right {
+      animation: fadeIn .9s .3s both;
+      display: flex; flex-direction: column;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .hero-stat {
+      background: var(--bg);
+      padding: 1.6rem 2rem;
+      transition: background .2s;
+    }
+    .hero-stat:hover { background: var(--red-dim); }
+    .hero-stat-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.2rem;
+      color: var(--red);
+      line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: .7rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── Shared section ── */
+    section { padding: 6rem 5rem; }
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    h2 em { font-style: italic; color: var(--red); }
+    .sec-label {
+      font-size: .62rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 2.5rem;
+      display: flex; align-items: center; gap: .8rem;
+    }
+    .sec-label::after { content:''; flex:1; height:1px; background: var(--border); }
+
+    /* ── About ── */
+    #about { background: var(--bg2); }
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 6rem; align-items: start;
+    }
+    .about-text p {
+      color: var(--muted);
+      font-size: .82rem;
+      line-height: 1.9;
+      margin-bottom: 1rem;
+    }
+    .about-text p strong { color: var(--ink); font-weight: 500; }
+    .passions {
+      display: flex; flex-direction: column;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .passion-item {
+      background: var(--bg2);
+      padding: 1.2rem 1.5rem;
+      display: flex; align-items: center; gap: 1rem;
+      transition: background .2s;
+    }
+    .passion-item:hover { background: var(--red-dim); }
+    .passion-icon { font-size: 1.3rem; width: 1.8rem; text-align: center; flex-shrink: 0; }
+    .passion-label { font-size: .78rem; font-weight: 400; }
+    .passion-sub { font-size: .66rem; color: var(--muted); }
+
+    /* ── Skills ── */
+    #skills { background: var(--bg); }
+    .skills-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: start;
+    }
+    .skill-group { margin-bottom: 1.8rem; }
+    .skill-group-title {
+      font-size: .63rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: .9rem;
+      padding-bottom: .5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .stag {
+      font-size: .7rem;
+      padding: .38rem .9rem;
+      border: 1px solid var(--border);
+      background: var(--bg2);
+      color: var(--ink);
+      border-radius: 2px;
+      transition: all .2s;
+    }
+    .stag:hover { border-color: var(--red); color: var(--red); background: var(--red-dim); }
+    .skills-intro p { color: var(--muted); font-size: .82rem; line-height: 1.9; }
+
+    /* ── Projects ── */
+    #projects { background: var(--bg2); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+    .proj-card {
+      background: var(--bg2);
+      padding: 2.4rem;
+      position: relative;
+      overflow: hidden;
+      transition: background .25s;
+      cursor: none;
+    }
+    .proj-card::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 2px; background: var(--red);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform .35s ease;
+    }
+    .proj-card:hover { background: var(--bg); }
+    .proj-card:hover::after { transform: scaleX(1); }
+    .proj-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.6rem;
+      color: var(--border);
+      line-height: 1;
+      margin-bottom: .5rem;
+      user-select: none;
+    }
+    .proj-card h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.45rem;
+      font-weight: 400;
+      margin-bottom: .6rem;
+    }
+    .proj-card p { color: var(--muted); font-size: .76rem; line-height: 1.85; margin-bottom: 1.4rem; }
+    .proj-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .ptag {
+      font-size: .6rem; letter-spacing: .1em; text-transform: uppercase;
+      padding: .25rem .65rem; border: 1px solid var(--border);
+      color: var(--muted); border-radius: 2px;
+    }
+
+    /* ── Experience ── */
+    #experience { background: var(--bg); }
+    .exp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+    .exp-card {
+      background: var(--bg);
+      padding: 2rem 2.2rem;
+      transition: background .2s;
+    }
+    .exp-card:hover { background: var(--red-dim); }
+    .exp-date { font-size: .62rem; letter-spacing: .12em; text-transform: uppercase; color: var(--red); margin-bottom: .5rem; }
+    .exp-card h3 { font-family: 'DM Serif Display', serif; font-size: 1.2rem; font-weight: 400; margin-bottom: .2rem; }
+    .exp-where { font-size: .7rem; color: var(--muted); margin-bottom: .75rem; }
+    .exp-desc { font-size: .75rem; color: var(--muted); line-height: 1.8; }
+
+    /* ── Contact ── */
+    #contact { background: var(--red); color: #fff; text-align: center; }
+    #contact h2 { color: #fff; margin-bottom: .75rem; }
+    #contact h2 em { color: rgba(255,255,255,.65); }
+    .lead { color: rgba(255,255,255,.72); font-size: .82rem; margin-bottom: 3rem; }
+    .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+    .clink {
+      display: inline-flex; align-items: center; gap: .6rem;
+      padding: .75rem 1.75rem;
+      border: 1.5px solid rgba(255,255,255,.35);
+      color: #fff; text-decoration: none;
+      font-size: .67rem; letter-spacing: .1em; text-transform: uppercase;
+      border-radius: 2px; transition: all .22s; cursor: none;
+    }
+    .clink:hover { background: #fff; color: var(--red); border-color: #fff; }
+
+    /* ── Footer ── */
+    footer {
+      padding: 1.8rem 5rem;
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between;
+      font-size: .65rem; color: var(--muted); letter-spacing: .08em;
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeIn { from { opacity:0 } to { opacity:1 } }
+    @keyframes slideUp { from { opacity:0; transform:translateY(28px) } to { opacity:1; transform:translateY(0) } }
+
+    .reveal { opacity:0; transform:translateY(20px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    /* ── Mobile ── */
+    @media (max-width: 768px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .nav-links { display: none; }
+      section, #hero, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+      #hero { grid-template-columns: 1fr; padding-top: 7rem; }
+      .hero-right { display: none; }
+      .about-inner, .skills-layout, .exp-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur-ring"></div>
+
+<!-- Nav -->
+<nav id="nav">
+  <div class="nav-logo">Riccardo<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">Chi sono</a></li>
+    <li><a href="#skills">Skill</a></li>
+    <li><a href="#projects">Progetti</a></li>
+    <li><a href="#experience">Esperienza</a></li>
+    <li><a href="#contact">Contatto</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-badge">IIS Marconi Pieralisi &middot; Informatica &middot; 5° anno</div>
+    <h1>
+      Developer.<br>
+      <em>Artista.</em><br>
+      Creator.
+    </h1>
+    <p class="hero-desc">
+      Mi chiamo Riccardo Cappella. Vivo tra il codice e la creatività —
+      sviluppatore in formazione, DJ, ballerino Hip-Hop e musicista.
+      Costruisco esperienze sia sul palco che sullo schermo.
+    </p>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn btn-primary">I miei progetti</a>
+      <a href="#contact" class="btn btn-outline">Contattami</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-stat">
+      <div class="hero-stat-num">5+</div>
+      <div class="hero-stat-label">Anni di palcoscenico</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">7</div>
+      <div class="hero-stat-label">Linguaggi conosciuti</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">3</div>
+      <div class="hero-stat-label">Gruppi artistici attivi</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">∞</div>
+      <div class="hero-stat-label">Passione per la creazione</div>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about">
+  <div class="sec-label reveal">01 — Chi sono</div>
+  <div class="about-inner">
+    <div class="about-text reveal">
+      <h2>Più di <em>uno sviluppatore</em></h2>
+      <p>
+        Frequento il <strong>quinto anno di informatica</strong> all'IIS Marconi Pieralisi.
+        Ho scelto questo percorso perché la tecnologia mi affascina quanto la creatività —
+        e le cose più interessanti nascono sempre dall'intersezione tra le due.
+      </p>
+      <p>
+        Quando non scrivo codice, mi trovi sotto i riflettori: come <strong>DJ e artista musicale</strong>,
+        come <strong>ballerino di Hip-Hop e Breakdance</strong>, o con il mio gruppo di sbandieratori e la mia band.
+        Ogni performance è un progetto, ogni progetto è una performance.
+      </p>
+      <p>
+        Credo che chi sa stare su un palco sappia anche comunicare bene online.
+        E chi sa costruire software sa costruire esperienze che durano.
+      </p>
+    </div>
+    <div class="passions reveal">
+      <div class="passion-item">
+        <div class="passion-icon">🎧</div>
+        <div>
+          <div class="passion-label">Musica &amp; DJ</div>
+          <div class="passion-sub">Artista, producer, performer</div>
+        </div>
+      </div>
+      <div class="passion-item">
+        <div class="passion-icon">🕺</div>
+        <div>
+          <div class="passion-label">Hip-Hop &amp; Breakdance</div>
+          <div class="passion-sub">Danza, crew, performance live</div>
+        </div>
+      </div>
+      <div class="passion-item">
+        <div class="passion-icon">🎵</div>
+        <div>
+          <div class="passion-label">Band musicale</div>
+          <div class="passion-sub">Ensemble, spettacoli, eventi</div>
+        </div>
+      </div>
+      <div class="passion-item">
+        <div class="passion-icon">🏳️</div>
+        <div>
+          <div class="passion-label">Sbandieratori</div>
+          <div class="passion-sub">Gruppo folkloristico, tradizione</div>
+        </div>
+      </div>
+      <div class="passion-item">
+        <div class="passion-icon">🎮</div>
+        <div>
+          <div class="passion-label">Videogiochi</div>
+          <div class="passion-sub">Giocatore appassionato</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Skills -->
+<section id="skills">
+  <div class="sec-label reveal">02 — Competenze</div>
+  <div class="skills-layout">
+    <div class="reveal">
+      <h2>Cosa <em>so fare</em></h2>
+      <div class="skills-intro" style="margin-top:.75rem">
+        <p>
+          Cinque anni di studio intensivo mi hanno dato una base solida su più livelli
+          dello stack — dal frontend all'infrastruttura di rete — affinata con progetti
+          reali e tanta curiosità.
+        </p>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="skill-group">
+        <div class="skill-group-title">Linguaggi</div>
+        <div class="skill-tags">
+          <span class="stag">HTML</span>
+          <span class="stag">CSS</span>
+          <span class="stag">JavaScript</span>
+          <span class="stag">PHP</span>
+          <span class="stag">Java</span>
+          <span class="stag">C#</span>
+          <span class="stag">MySQL</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Strumenti &amp; Ambienti</div>
+        <div class="skill-tags">
+          <span class="stag">Visual Studio</span>
+          <span class="stag">Android Studio</span>
+          <span class="stag">Cisco Packet Tracer</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Soft skill</div>
+        <div class="skill-tags">
+          <span class="stag">Lavoro in team</span>
+          <span class="stag">Problem solving</span>
+          <span class="stag">Creatività</span>
+          <span class="stag">Comunicazione</span>
+          <span class="stag">Performance live</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Projects -->
+<section id="projects">
+  <div class="sec-label reveal">03 — Progetti</div>
+  <h2 class="reveal">Ciò che <em>costruisco</em></h2>
+  <div class="projects-grid">
+
+    <div class="proj-card reveal">
+      <div class="proj-num">01</div>
+      <h3>Carriera da DJ &amp; Artista</h3>
+      <p>
+        Sto costruendo la mia identità come DJ e musicista: produzione di musica originale,
+        mixaggi, performance live ed eventi. Un progetto artistico che si evolve
+        set dopo set, traccia dopo traccia.
+      </p>
+      <div class="proj-tags">
+        <span class="ptag">Musica</span>
+        <span class="ptag">DJ Set</span>
+        <span class="ptag">Produzione</span>
+        <span class="ptag">Live</span>
+      </div>
+    </div>
+
+    <div class="proj-card reveal">
+      <div class="proj-num">02</div>
+      <h3>Gruppo di Ballo</h3>
+      <p>
+        Membro attivo di una crew di Hip-Hop e Breakdance. Coreografie,
+        esibizioni pubbliche, gare e collaborazioni artistiche.
+        Il palcoscenico come spazio di ricerca e crescita personale.
+      </p>
+      <div class="proj-tags">
+        <span class="ptag">Hip-Hop</span>
+        <span class="ptag">Breakdance</span>
+        <span class="ptag">Performance</span>
+        <span class="ptag">Crew</span>
+      </div>
+    </div>
+
+    <div class="proj-card reveal">
+      <div class="proj-num">03</div>
+      <h3>Band &amp; Sbandieratori</h3>
+      <p>
+        Partecipo a una band musicale e a un gruppo di sbandieratori:
+        due realtà che uniscono tradizione, spettacolo e lavoro di squadra
+        in eventi e manifestazioni locali.
+      </p>
+      <div class="proj-tags">
+        <span class="ptag">Band</span>
+        <span class="ptag">Sbandieratori</span>
+        <span class="ptag">Tradizione</span>
+        <span class="ptag">Eventi</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Experience -->
+<section id="experience">
+  <div class="sec-label reveal">04 — Esperienza</div>
+  <h2 class="reveal">Il mio <em>percorso</em></h2>
+  <div class="exp-grid">
+
+    <div class="exp-card reveal">
+      <div class="exp-date">In corso</div>
+      <h3>DJ &amp; Artista musicale</h3>
+      <div class="exp-where">Freelance · Palchi &amp; eventi locali</div>
+      <p class="exp-desc">
+        Attività continuativa come DJ per eventi, feste e serate.
+        Sviluppo del progetto artistico personale tra produzione musicale e live set.
+      </p>
+    </div>
+
+    <div class="exp-card reveal">
+      <div class="exp-date">Esperienza pluriennale</div>
+      <h3>Mondo dello Spettacolo</h3>
+      <div class="exp-where">Gruppo ballo · Band · Sbandieratori</div>
+      <p class="exp-desc">
+        Anni di palcoscenico attraverso tre realtà distinte:
+        danza, musica d'insieme e folklore. Esperienza in performance dal vivo,
+        coordinamento e lavoro di gruppo.
+      </p>
+    </div>
+
+    <div class="exp-card reveal">
+      <div class="exp-date">Esperienza passata</div>
+      <h3>Educatore per bambini</h3>
+      <div class="exp-where">Settore educativo</div>
+      <p class="exp-desc">
+        Lavoro educativo con bambini: gestione del gruppo, attività didattiche
+        e relazione con i più piccoli. Esperienza che ha rafforzato empatia
+        e capacità comunicative.
+      </p>
+    </div>
+
+    <div class="exp-card reveal">
+      <div class="exp-date">2024 — 2025</div>
+      <h3>PCTO</h3>
+      <div class="exp-where">IIS Marconi Pieralisi · Tirocinio scolastico</div>
+      <p class="exp-desc">
+        Percorso per le Competenze Trasversali e l'Orientamento svolto
+        nell'ambito del corso di informatica. Prima esperienza strutturata
+        nel mondo professionale del settore tech.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+  <div class="sec-label reveal" style="color:rgba(255,255,255,.45)">05 — Contatto</div>
+  <h2 class="reveal">Parliamo di <em>qualcosa di bello</em></h2>
+  <p class="lead reveal">
+    Che sia per un progetto, una collaborazione o semplicemente per conoscersi — sono qui.
+  </p>
+  <div class="contact-links reveal">
+    <a href="mailto:riccardo@example.com" class="clink">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="1" y="3" width="14" height="10" rx="1"/>
+        <path d="M1 5l7 5 7-5"/>
+      </svg>
+      Email
+    </a>
+    <a href="https://github.com" target="_blank" class="clink">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.729.083-.729 1.205.084 1.84 1.237 1.84 1.237 1.07 1.835 2.809 1.305 3.495.998.108-.776.418-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.468-2.38 1.235-3.22-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.3 1.23a11.5 11.5 0 0 1 3-.405c1.02.005 2.047.138 3 .405 2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.233 1.91 1.233 3.22 0 4.61-2.807 5.625-5.48 5.92.43.372.823 1.102.823 2.222v3.293c0 .322.218.694.825.576C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z"/>
+      </svg>
+      GitHub
+    </a>
+    <a href="https://instagram.com" target="_blank" class="clink">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="2" y="2" width="20" height="20" rx="5"/>
+        <circle cx="12" cy="12" r="5"/>
+        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+      </svg>
+      Instagram
+    </a>
+    <a href="https://linkedin.com" target="_blank" class="clink">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+      </svg>
+      LinkedIn
+    </a>
+  </div>
+</section>
+
+<footer>
+  <span>© 2025 Riccardo Cappella</span>
+  <span>Deployato su Vercel</span>
+</footer>
+
+<script>
+  // Cursor
+  const cur = document.getElementById('cur');
+  const ring = document.getElementById('cur-ring');
+  let mx=0, my=0, rx=0, ry=0;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cur.style.left = mx+'px'; cur.style.top = my+'px';
+  });
+  (function loop(){
+    rx += (mx-rx)*.1; ry += (my-ry)*.1;
+    ring.style.left = rx+'px'; ring.style.top = ry+'px';
+    requestAnimationFrame(loop);
+  })();
+
+  document.querySelectorAll('a,button,.proj-card,.passion-item,.exp-card,.hero-stat,.stag').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cur.style.transform = 'translate(-50%,-50%) scale(2.2)';
+      ring.style.width = ring.style.height = '52px';
+      ring.style.opacity = '.18';
+    });
+    el.addEventListener('mouseleave', () => {
+      cur.style.transform = 'translate(-50%,-50%) scale(1)';
+      ring.style.width = ring.style.height = '32px';
+      ring.style.opacity = '.35';
+    });
+  });
+
+  // Nav border on scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Scroll reveal
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if(e.isIntersecting) {
+        e.target.style.transitionDelay = (i * 0.08) + 's';
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
