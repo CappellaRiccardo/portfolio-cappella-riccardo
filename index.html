@@ -245,13 +245,17 @@
     /* ── Skills ── */
     #skills { background: var(--bg); }
     .skills-layout {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .skills-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 5rem;
       align-items: start;
       max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
+      margin: 2rem auto 0;
       width: 100%;
     }
     .skill-group { margin-bottom: 1.8rem; }
@@ -499,8 +503,9 @@
   <div class="sec-label reveal">02 — Competenze</div>
   <div class="skills-layout">
   <div class="reveal">
-  <h2 class="reveal">Cosa <em>so fare</em></h2>
-  <div class="reveal">
+    <h2 class="reveal">Cosa <em>so fare</em></h2>
+  </div>
+  <div class="skills-grid reveal">
 
   <!-- HARD SKILLS -->
   <div>
