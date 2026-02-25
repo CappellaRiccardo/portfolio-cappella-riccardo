@@ -92,7 +92,7 @@
     #hero {
       min-height: 100vh;
       display: grid;
-      grid-template-columns: 1.0fr 0.4fr;
+      grid-template-columns: 1fr; /* era 1.0fr 0.4fr */
       align-items: center;
       padding: 8rem 5rem 5rem;
       gap: 0.3rem;
@@ -405,7 +405,17 @@
 <section id="hero">
   <div class="hero-left">
     <div class="hero-badge">IIS Marconi Pieralisi &middot; Informatica &middot; 5° anno</div>
-    <h1>Riccardo<br><em>Cappella.</em></h1>
+    
+    <div style="display:flex; align-items:center; gap:2rem; flex-wrap:wrap;">
+      <h1>Riccardo<br><em>Cappella.</em></h1>
+      <div class="hero-right" style="width:200px;">
+        <img class="hero-photo" src="foto.jpg" alt="Riccardo Cappella">
+        <div class="hero-photo-overlay">
+          <div class="hero-photo-tag">Riccardo Cappella — DJ-Set Ristorante Bellini, Tolentino</div>
+        </div>
+      </div>
+    </div>
+    
     <p class="hero-desc">
     <img class="hero-music" src="spartito-musicale.png" alt="note musicali">
 
