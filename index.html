@@ -340,6 +340,127 @@
     .stag:hover { border-color: var(--red); color: var(--red); background: var(--red-dim); }
     .skills-intro p { color: var(--muted); font-size: .82rem; line-height: 1.9; }
 
+    /* ── School ── */
+    #school { background: var(--bg); }
+    .school-intro {
+      color: var(--muted);
+      font-size: .90rem;
+      line-height: 1.9;
+      max-width: 600px;
+      margin-bottom: 3rem;
+    }
+    .school-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .school-col {
+      background: var(--bg);
+      padding: 2.8rem;
+    }
+    .school-col-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .school-col-icon {
+      width: 42px; height: 42px;
+      background: var(--red-dim);
+      border: 1px solid rgba(160,39,42,0.2);
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .school-col-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.35rem;
+      font-weight: 400;
+    }
+    .school-col-title em { font-style: italic; color: var(--red); }
+    .school-col-subtitle {
+      font-size: .62rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: .1rem;
+    }
+    .school-subject-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--border);
+    }
+    .school-subject {
+      background: var(--bg);
+      padding: 1.1rem 1.4rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      transition: background .2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .school-subject::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--red);
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform .25s ease;
+    }
+    .school-subject:hover { background: var(--red-dim); }
+    .school-subject:hover::before { transform: scaleY(1); }
+    .subject-info { flex: 1; }
+    .subject-name {
+      font-size: .82rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: .2rem;
+    }
+    .subject-desc {
+      font-size: .68rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .subject-badge {
+      font-size: .58rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: .22rem .6rem;
+      border-radius: 2px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-top: .1rem;
+    }
+    .badge-tech {
+      background: rgba(160,39,42,0.1);
+      color: var(--red);
+      border: 1px solid rgba(160,39,42,0.2);
+    }
+    .badge-hum {
+      background: rgba(90,70,50,0.1);
+      color: var(--muted);
+      border: 1px solid rgba(90,70,50,0.2);
+    }
+    .school-note {
+      margin-top: 2rem;
+      padding: 1rem 1.4rem;
+      background: var(--bg2);
+      border-left: 2px solid var(--red);
+      font-size: .72rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .school-note strong { color: var(--ink); font-weight: 500; }
+
     /* ── Projects ── */
     #projects { background: var(--bg2); }
     .projects-grid {
@@ -638,6 +759,117 @@
   </div>
 
 </div>
+</section>
+
+<!-- School -->
+<section id="school">
+  <div class="sec-label reveal">04 — Scuola</div>
+  <h2 class="reveal">Il mio <em>percorso scolastico</em></h2>
+  <p class="school-intro reveal">
+    Frequento il <strong>quinto anno dell'indirizzo Informatica</strong> presso l'IIS Marconi Pieralisi.
+    Un percorso che unisce rigore tecnico e cultura generale, formandomi sia come futuro professionista del settore che come persona.
+  </p>
+  <div class="school-columns reveal">
+
+    <!-- MATERIE SCIENTIFICHE -->
+    <div class="school-col">
+      <div class="school-col-header">
+        <div class="school-col-icon">💻</div>
+        <div>
+          <div class="school-col-title">Materie <em>Scientifiche</em></div>
+          <div class="school-col-subtitle">Indirizzo Informatica · ITIS</div>
+        </div>
+      </div>
+      <div class="school-subject-list">
+
+        <div class="school-subject">
+          <div class="subject-info">
+            <div class="subject-name">Informatica</div>
+            <div class="subject-desc">Algoritmi, programmazione orientata agli oggetti, basi di dati, sviluppo web e applicativo. Il cuore del percorso.</div>
+          </div>
+          <span class="subject-badge badge-tech">Core</span>
+        </div>
+
+        <div class="school-subject">
+          <div class="subject-info">
+            <div class="subject-name">Sistemi e Reti</div>
+            <div class="subject-desc">Architetture di rete, protocolli TCP/IP, configurazione di apparati, sicurezza informatica e reti locali. Utilizzato anche Cisco Packet Tracer.</div>
+          </div>
+          <span class="subject-badge badge-tech">Reti</span>
+        </div>
+
+        <div class="school-subject">
+          <div class="subject-info">
+            <div class="subject-name">TPSIT</div>
+            <div class="subject-desc">Tecnologie e Progettazione di Sistemi Informatici e di Telecomunicazioni. Progettazione di sistemi distribuiti, concorrenza e architetture software.</div>
+          </div>
+          <span class="subject-badge badge-tech">Sistemi</span>
+        </div>
+
+        <div class="school-subject">
+          <div class="subject-info">
+            <div class="subject-name">Gestione Progetto</div>
+            <div class="subject-desc">Project management, metodologie agili, pianificazione di risorse e tempi, documentazione tecnica e lavoro di team strutturato.</div>
+          </div>
+          <span class="subject-badge badge-tech">PM</span>
+        </div>
+
+      </div>
+      <div class="school-note">
+        <strong>Nota:</strong> queste discipline costituiscono la spina dorsale del mio percorso tecnico e alimentano direttamente i miei progetti personali di sviluppo.
+      </div>
+    </div>
+
+    <!-- MATERIE UMANISTICHE -->
+    <div class="school-col" style="background: var(--bg2);">
+      <div class="school-col-header">
+        <div class="school-col-icon" style="background: rgba(90,70,50,0.08); border-color: rgba(90,70,50,0.2);">📖</div>
+        <div>
+          <div class="school-col-title">Materie <em style="color: var(--muted);">Umanistiche</em></div>
+          <div class="school-col-subtitle">Cultura generale · Formazione</div>
+        </div>
+      </div>
+      <div class="school-subject-list">
+
+        <div class="school-subject" style="background: var(--bg2);">
+          <div class="subject-info">
+            <div class="subject-name">Italiano</div>
+            <div class="subject-desc">Letteratura italiana dalle origini al Novecento, analisi del testo, scrittura argomentativa ed espressiva. La lingua come strumento di pensiero.</div>
+          </div>
+          <span class="subject-badge badge-hum">Lettere</span>
+        </div>
+
+        <div class="school-subject" style="background: var(--bg2);">
+          <div class="subject-info">
+            <div class="subject-name">Storia</div>
+            <div class="subject-desc">Dal Risorgimento al mondo contemporaneo: eventi, dinamiche sociali e politiche che hanno plasmato il presente.</div>
+          </div>
+          <span class="subject-badge badge-hum">Storia</span>
+        </div>
+
+        <div class="school-subject" style="background: var(--bg2);">
+          <div class="subject-info">
+            <div class="subject-name">Inglese</div>
+            <div class="subject-desc">Lingua inglese con focus su ambito tecnico-informatico, comprensione di documentazione, comunicazione professionale e cultura anglosassone.</div>
+          </div>
+          <span class="subject-badge badge-hum">B2</span>
+        </div>
+
+        <div class="school-subject" style="background: var(--bg2);">
+          <div class="subject-info">
+            <div class="subject-name">Religione</div>
+            <div class="subject-desc">Riflessione su etica, valori, dialogo interculturale e le grandi domande dell'esistenza. Spazio di confronto e crescita personale.</div>
+          </div>
+          <span class="subject-badge badge-hum">IRC</span>
+        </div>
+
+      </div>
+      <div class="school-note" style="border-left-color: var(--muted);">
+        <strong>Nota:</strong> le materie umanistiche mi hanno dato gli strumenti per comunicare, ragionare in modo critico e collocare la tecnologia nel suo contesto umano.
+      </div>
+    </div>
+
+  </div>
 </section>
 
 <!-- Projects -->
