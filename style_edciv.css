@@ -266,6 +266,7 @@ body {
 .prose-block {
   max-width: 720px;
   margin-bottom: 40px;
+  text-align: center;
 }
 
 .prose-block p { margin-bottom: 20px; }
