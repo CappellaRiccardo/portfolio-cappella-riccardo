@@ -259,7 +259,6 @@ body {
   line-height: 1.15;
   color: #c0605a;
   letter-spacing: -0.02em;
-  text-align: center;
 }
 
 /* ─── PROSE ─── */
@@ -774,10 +773,14 @@ body {
 }
 
 #storia .section-header {
+  align-self: center;
+  text-align: center;
   width: 100%;
 }
 
 #storia .prose-block {
+  align-self: center;
+  text-align: center;
   width: 60%;
   max-width: none;
   margin-bottom: 0;
@@ -823,7 +826,10 @@ body {
 }
 
 #storia .card-grid {
-  gap: 32px;
+  flex: 1 1 0;
+  min-width: 0;
+  font-size: 0.82rem;
+  padding: 22px;
 }
 
 #storia .card-grid .topic-card {
