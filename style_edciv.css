@@ -1,9 +1,4 @@
-/* ================================================
-   EDUCAZIONE CIVICA — LIBERTÀ & SICUREZZA DIGITALE
-   Stylesheet · 2025–2026
-   ================================================ */
-
-/* ─── VARIABLES ─── */
+/* VARIABILI */
 :root {
   --bg:        #f5f3ee;
   --bg2:       #ede9e1;
@@ -51,7 +46,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ─── HERO ─── */
+/* HERO */
 .hero {
   position: relative;
   min-height: 100vh;
@@ -174,7 +169,7 @@ body {
   animation: scrollPulse 2s infinite;
 }
 
-/* ─── TOC BAR ─── */
+/* TOC BAR */
 .toc-bar {
   background: rgba(245,243,238,0.88);
   backdrop-filter: blur(16px);
@@ -215,13 +210,13 @@ body {
   background: var(--accent-glow);
 }
 
-/* ─── MAIN CONTENT ─── */
+/* MAIN CONTENT */
 .main-content {
   padding: 80px 0 0;
   max-width: 920px;
 }
 
-/* ─── SECTIONS ─── */
+/* SECTIONS */
 .content-section {
   margin-bottom: 100px;
   opacity: 0;
@@ -363,7 +358,7 @@ body {
 .card-gpoi:hover    { border-color: var(--gpoi);     box-shadow: 0 20px 40px rgba(139,92,246,0.08); }
 .card-sistemi:hover { border-color: var(--sistemi);  box-shadow: 0 20px 40px rgba(239,68,68,0.08); }
 
-/* ─── TIMELINE ─── */
+/* TIMELINE */
 .timeline {
   display: flex;
   flex-direction: column;
@@ -396,7 +391,7 @@ body {
   color: var(--text-muted);
 }
 
-/* ─── RULES GRID ─── */
+/* RULES GRID */
 .rules-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -435,7 +430,7 @@ body {
   margin: 0;
 }
 
-/* ─── GDPR PRINCIPLES ─── */
+/* GDPR PRINCIPLES */
 .gdpr-principles {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -463,7 +458,7 @@ body {
   margin: 0;
 }
 
-/* ─── STATS ─── */
+/* STATS */
 .stat-block {
   display: flex;
   gap: 24px;
@@ -495,7 +490,7 @@ body {
   line-height: 1.4;
 }
 
-/* ─── CIA TRIAD ─── */
+/* CIA TRIAD */
 .cia-triad-wrapper {
   margin-bottom: 40px;
 }
@@ -564,7 +559,7 @@ body {
 .cia-a { border-top: 2px solid var(--storia); }
 .cia-a .cia-letter { color: var(--storia); }
 
-/* ─── TECH LISTS ─── */
+/* TECH LISTS */
 .tech-list {
   list-style: none;
   margin: 12px 0;
@@ -592,7 +587,7 @@ body {
   white-space: nowrap;
 }
 
-/* ─── THREATS GRID ─── */
+/* THREATS GRID */
 .threats-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
