@@ -578,3 +578,120 @@ footer {
   .hero-right { display: none; }
   .about-inner, .skills-layout, .exp-grid { grid-template-columns: 1fr; gap: 2rem; }
 }
+
+/* ── CV Block ── */
+.cv-block {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  margin-top: 4rem;
+  padding: 2.5rem;
+  border: 1px solid var(--border);
+  background: var(--bg2);
+  max-width: 1100px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cv-preview-wrap {
+  position: relative;
+  width: 180px;
+  min-width: 180px;
+  height: 250px;
+  cursor: none;
+  border: 1px solid var(--border);
+  background: #fff;
+  box-shadow: 4px 4px 0 var(--border);
+  overflow: hidden;
+  transition: box-shadow .25s, transform .25s;
+  flex-shrink: 0;
+}
+.cv-preview-wrap:hover {
+  box-shadow: 6px 6px 0 var(--red);
+  transform: translate(-2px, -2px);
+}
+
+.cv-preview-inner {
+  padding: 1.2rem 1rem;
+  height: 100%;
+}
+
+.cv-mock-header { margin-bottom: .9rem; }
+.cv-mock-name {
+  font-family: 'DM Serif Display', serif;
+  font-size: .75rem;
+  color: var(--ink);
+  margin-bottom: .15rem;
+}
+.cv-mock-sub {
+  font-size: .48rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: .5rem;
+}
+.cv-mock-line {
+  height: 4px;
+  background: var(--bg3);
+  border-radius: 2px;
+  margin-bottom: .3rem;
+}
+.cv-mock-line.long  { width: 90%; }
+.cv-mock-line.med   { width: 65%; }
+.cv-mock-line.short { width: 40%; }
+
+.cv-mock-section { margin-top: .75rem; }
+.cv-mock-label {
+  font-size: .42rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: .35rem;
+  padding-bottom: .2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.cv-hover-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(160, 39, 42, 0.88);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  color: #fff;
+  font-size: .62rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity .25s;
+}
+.cv-preview-wrap:hover .cv-hover-overlay { opacity: 1; }
+
+.cv-info { flex: 1; }
+.cv-info-label {
+  font-size: .62rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: .4rem;
+}
+.cv-info-name {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin-bottom: .6rem;
+}
+.cv-info-desc {
+  font-size: .78rem;
+  color: var(--muted);
+  line-height: 1.8;
+  max-width: 420px;
+}
+
+@media (max-width: 768px) {
+  .cv-block { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+  .cv-preview-wrap { width: 100%; min-width: unset; height: 200px; }
+}
