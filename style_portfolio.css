@@ -504,6 +504,9 @@ h2 em { font-style: italic; color: var(--red); }
   gap: 1px;
   background: var(--border);
 }
+.school-subject-list .school-subject:last-child {
+  border-bottom: none;
+}
 .school-subject {
   background: var(--bg);
   padding: 1.1rem 1.4rem;
